@@ -1,8 +1,20 @@
 import { useEffect, useRef, useState } from 'react'
 
 const roles = ['Backend Developer', 'API Architect', 'Rails & Node.js Engineer', 'GraphQL Enthusiast', 'Problem Solver']
-const techTags = ['Rails', 'FastAPI', 'Node.js', 'GraphQL', 'MongoDB', 'PostgreSQL']
-const stats = [{ value: '25%', label: 'API faster' }, { value: '8.4', label: 'MCA CGPA' }, { value: '6mo', label: 'Experience' }]
+
+// Tags with individual colors matching screenshot
+const techTags = [
+  { name: 'Rails',   bg: '#fff1f2', color: '#e11d48',  border: '#fecdd3' },
+  { name: 'FastAPI', bg: '#eff6ff', color: '#2563eb',  border: '#bfdbfe' },
+  { name: 'Node.js', bg: '#eef2ff', color: '#4f46e5',  border: '#c7d2fe' },
+  { name: 'GraphQL', bg: '#fffbeb', color: '#d97706',  border: '#fde68a' },
+]
+
+const stats = [
+  { value: '25%', label: 'API\nfaster' },
+  { value: '8.4', label: 'CGPA' },
+  { value: '6mo', label: 'Experience' },
+]
 
 function useTypewriter(words: string[]) {
   const [display, setDisplay] = useState('')
@@ -12,7 +24,6 @@ function useTypewriter(words: string[]) {
   useEffect(() => {
     const word = words[wordIdx]
     let timeout: ReturnType<typeof setTimeout>
-
     if (typing) {
       if (display.length < word.length) {
         timeout = setTimeout(() => setDisplay(word.slice(0, display.length + 1)), 90)
@@ -43,113 +54,174 @@ export default function Hero() {
     const rect = card.getBoundingClientRect()
     const x = e.clientX - rect.left - rect.width / 2
     const y = e.clientY - rect.top - rect.height / 2
-    const rotY = (x / (rect.width / 2)) * 8
-    const rotX = -(y / (rect.height / 2)) * 8
+    const rotY = (x / (rect.width / 2)) * 7
+    const rotX = -(y / (rect.height / 2)) * 7
     card.style.transform = `perspective(800px) rotateY(${rotY}deg) rotateX(${rotX}deg) translateY(-4px)`
   }
 
   const handleMouseLeave = () => {
-    if (cardRef.current) cardRef.current.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) translateY(0)'
+    if (cardRef.current)
+      cardRef.current.style.transform = 'perspective(800px) rotateY(0deg) rotateX(0deg) translateY(0)'
   }
 
   return (
-    <section style={{ paddingTop: '8rem', paddingBottom: '5rem', padding: '8rem 2rem 5rem' }}>
+    <section style={{ position: 'relative', padding: '7.5rem 2.5rem 5rem', overflow: 'hidden' }}>
+      {/* Subtle background grid */}
       <div style={{
+        position: 'absolute', inset: 0, zIndex: 0,
+        backgroundImage: `
+          linear-gradient(var(--border) 1px, transparent 1px),
+          linear-gradient(90deg, var(--border) 1px, transparent 1px)
+        `,
+        backgroundSize: '60px 60px',
+        opacity: 0.35,
+      }} />
+
+      <div style={{
+        position: 'relative', zIndex: 1,
         maxWidth: 1080, margin: '0 auto',
-        display: 'grid', gridTemplateColumns: '1fr auto', gap: '4rem', alignItems: 'center',
+        display: 'grid', gridTemplateColumns: '1fr 300px', gap: '4rem', alignItems: 'center',
       }}>
-        {/* Left */}
+        {/* ── Left ── */}
         <div>
           {/* Badge */}
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: '0.5rem',
-            background: '#ecfdf5', border: '1px solid #a7f3d0',
-            borderRadius: 100, padding: '0.35rem 0.9rem',
-            fontSize: '0.82rem', fontWeight: 500, color: '#065f46',
-            marginBottom: '1.5rem',
+            background: '#f0fdf4', border: '1px solid #bbf7d0',
+            borderRadius: 100, padding: '0.38rem 1rem',
+            fontSize: '0.83rem', fontWeight: 500, color: '#15803d',
+            marginBottom: '1.8rem',
             animation: 'pulse-badge 2s infinite',
           }}>
-            <span style={{ width: 8, height: 8, borderRadius: '50%', background: 'var(--emerald)', display: 'inline-block' }} />
+            <span style={{
+              width: 8, height: 8, borderRadius: '50%',
+              background: '#22c55e', display: 'inline-block',
+              boxShadow: '0 0 0 3px rgba(34,197,94,0.25)',
+            }} />
             Available for opportunities
           </div>
 
-          {/* Headline */}
-          <div style={{ fontSize: '0.95rem', color: 'var(--muted)', fontWeight: 500, marginBottom: '0.5rem' }}>Hi, I'm</div>
+          {/* Hi, I'm */}
+          <div style={{
+            fontSize: 'clamp(1.6rem, 3vw, 2.2rem)',
+            fontWeight: 800, color: 'var(--text)',
+            letterSpacing: '-0.02em', lineHeight: 1.1,
+            marginBottom: '0.3rem',
+          }}>Hi, I'm</div>
+
+          {/* Name */}
           <h1 style={{
-            fontSize: 'clamp(2.8rem, 5.5vw, 5rem)',
-            fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 1.05,
+            fontSize: 'clamp(2.8rem, 6vw, 5.2rem)',
+            fontWeight: 900, letterSpacing: '-0.04em', lineHeight: 1.0,
             background: 'linear-gradient(135deg, var(--indigo) 0%, var(--rose) 100%)',
             WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-            marginBottom: '1.2rem',
+            backgroundClip: 'text',
+            marginBottom: '1.1rem',
           }}>Akshat Sharma</h1>
 
           {/* Typewriter */}
-          <div style={{ fontSize: 'clamp(1.1rem, 2vw, 1.4rem)', color: 'var(--muted)', marginBottom: '1.8rem', minHeight: '2.2rem', fontWeight: 400 }}>
+          <div style={{
+            fontSize: 'clamp(1.1rem, 2.2vw, 1.45rem)',
+            color: 'var(--text)', fontWeight: 500,
+            marginBottom: '1.6rem', minHeight: '2.1rem',
+          }}>
             {typed}
-            <span style={{ animation: 'blink 0.7s infinite', color: 'var(--indigo)', fontWeight: 300 }}>|</span>
+            <span style={{ animation: 'blink 0.7s step-end infinite', color: 'var(--indigo)', marginLeft: 1 }}>|</span>
           </div>
 
           {/* Description */}
-          <p style={{ fontSize: '1rem', color: 'var(--text2)', maxWidth: 520, lineHeight: 1.75, marginBottom: '2.2rem' }}>
-            Backend Developer specializing in <strong>Node.js</strong>, <strong>Ruby on Rails</strong>, and <strong>FastAPI</strong>.
-            I build scalable APIs, microservices, and backend systems that power great products.
+          <p style={{
+            fontSize: '1rem', color: 'var(--text2)',
+            maxWidth: 510, lineHeight: 1.8, marginBottom: '2.2rem',
+          }}>
+            Backend-focused Software Developer with experience building{' '}
+            <strong style={{ color: 'var(--text)' }}>scalable APIs</strong>,
+            healthcare-compliant systems, and full-stack applications using{' '}
+            <strong style={{ color: 'var(--text)' }}>Rails, Node.js</strong>, and{' '}
+            <strong style={{ color: 'var(--text)' }}>MySQL</strong>.
           </p>
 
           {/* CTAs */}
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-            <a href="#projects" className="btn-primary">View My Work <span>→</span></a>
-            <a href="#contact" className="btn-secondary">Get In Touch</a>
+          <div style={{ display: 'flex', gap: '0.85rem', flexWrap: 'wrap' }}>
+            <a href="#projects" className="btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              View Projects
+            </a>
+            <a href="#contact" className="btn-secondary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="22,4 12,13 2,4"/></svg>
+              Get in Touch
+            </a>
           </div>
         </div>
 
-        {/* Right Card */}
+        {/* ── Right Card ── */}
         <div
           ref={cardRef}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           style={{
-            width: 280, background: 'var(--bg2)',
-            border: '1px solid var(--border)', borderRadius: 24, padding: '2rem',
+            background: 'white',
+            border: '1px solid var(--border)',
+            borderRadius: 20,
+            overflow: 'hidden',
+            boxShadow: 'var(--shadow-lg)',
             transition: 'transform 0.15s ease-out',
-            boxShadow: 'var(--shadow)',
           }}
         >
-          {/* Avatar */}
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '1.2rem' }}>
-            <div style={{
-              width: 80, height: 80, borderRadius: '50%',
-              background: 'linear-gradient(135deg, var(--indigo) 0%, var(--rose) 100%)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: '1.8rem', fontWeight: 900, color: 'white',
-            }}>AS</div>
-          </div>
+          {/* Gradient top bar */}
+          <div style={{ height: 4, background: 'linear-gradient(90deg, var(--indigo) 0%, #f97316 100%)' }} />
 
-          <div style={{ textAlign: 'center', marginBottom: '1.2rem' }}>
-            <div style={{ fontWeight: 700, fontSize: '1rem', color: 'var(--text)' }}>Akshat Sharma</div>
-            <div style={{ fontSize: '0.82rem', color: 'var(--muted)', marginTop: '0.2rem' }}>Backend Developer</div>
-            <div style={{ fontSize: '0.78rem', color: 'var(--muted)', marginTop: '0.2rem', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.3rem' }}>
-              <span>📍</span> Bengaluru, India
+          <div style={{ padding: '1.8rem' }}>
+            {/* Avatar — rounded square */}
+            <div style={{ marginBottom: '1rem' }}>
+              <div style={{
+                width: 68, height: 68,
+                borderRadius: 18,
+                background: 'linear-gradient(135deg, var(--indigo) 0%, var(--rose) 100%)',
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: '2rem', fontWeight: 900, color: 'white',
+                letterSpacing: '-1px',
+              }}>A</div>
             </div>
-          </div>
 
-          {/* Tags */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', justifyContent: 'center', marginBottom: '1.2rem' }}>
-            {techTags.map((t) => (
-              <span key={t} className="tag" style={{ fontSize: '0.7rem' }}>{t}</span>
-            ))}
-          </div>
+            {/* Name & role */}
+            <div style={{ fontWeight: 700, fontSize: '1.1rem', color: 'var(--text)', marginBottom: '0.25rem' }}>
+              Akshat Sharma
+            </div>
+            <div style={{ fontSize: '0.85rem', color: 'var(--muted)', marginBottom: '1.1rem' }}>
+              Backend Developer · Bengaluru
+            </div>
 
-          {/* Divider */}
-          <div style={{ height: 1, background: 'var(--border)', margin: '1rem 0' }} />
+            {/* Tech tags with individual colors */}
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.4rem', marginBottom: '1.3rem' }}>
+              {techTags.map((t) => (
+                <span key={t.name} style={{
+                  fontSize: '0.78rem', fontWeight: 600,
+                  fontFamily: 'JetBrains Mono, monospace',
+                  background: t.bg, color: t.color,
+                  border: `1px solid ${t.border}`,
+                  padding: '0.22rem 0.65rem', borderRadius: 100,
+                  display: 'inline-block',
+                }}>{t.name}</span>
+              ))}
+            </div>
 
-          {/* Stats */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.5rem', textAlign: 'center' }}>
-            {stats.map((s) => (
-              <div key={s.label}>
-                <div style={{ fontWeight: 900, fontSize: '1rem', color: 'var(--indigo)' }}>{s.value}</div>
-                <div style={{ fontSize: '0.68rem', color: 'var(--muted)', fontFamily: 'JetBrains Mono, monospace' }}>{s.label}</div>
-              </div>
-            ))}
+            {/* Divider */}
+            <div style={{ height: 1, background: 'var(--border)', marginBottom: '1.1rem' }} />
+
+            {/* Stats */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '0.25rem', textAlign: 'center' }}>
+              {stats.map((s) => (
+                <div key={s.label} style={{ padding: '0.3rem 0' }}>
+                  <div style={{ fontWeight: 900, fontSize: '1.25rem', color: 'var(--indigo)', lineHeight: 1.1 }}>{s.value}</div>
+                  <div style={{
+                    fontSize: '0.7rem', color: 'var(--muted)',
+                    fontFamily: 'JetBrains Mono, monospace',
+                    marginTop: '0.2rem', whiteSpace: 'pre-line', lineHeight: 1.3,
+                  }}>{s.label}</div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
