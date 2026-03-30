@@ -1,11 +1,13 @@
 export default function Footer() {
   return (
     <footer style={{
-      borderTop: '1px solid var(--border)', textAlign: 'center',
-      padding: '2rem', fontSize: '0.82rem', color: 'var(--muted)',
-      fontFamily: 'JetBrains Mono, monospace',
+      textAlign: 'center', padding: '1.8rem 2rem',
+      fontSize: '0.85rem', color: 'var(--muted)',
+      borderTop: '1px solid var(--border)',
     }}>
-      © 2025 Akshat Sharma. Built with ❤️ using React & TypeScript
+      Designed & built by{' '}
+      <a href="#" style={{ color: 'var(--indigo)', textDecoration: 'none', fontWeight: 500 }}>Akshat Sharma</a>
+      {' '}· 2026
     </footer>
   )
 }

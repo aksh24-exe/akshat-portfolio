@@ -2,101 +2,118 @@ import { motion } from 'framer-motion'
 
 const categories = [
   {
+    icon: '🖥️',
     title: 'Languages',
-    color: 'var(--indigo)',
     skills: [
-      { name: 'JavaScript', bg: '#eef2ff', color: '#4f46e5' },
-      { name: 'TypeScript', bg: '#eff6ff', color: '#2563eb' },
-      { name: 'Python', bg: '#f0fdf4', color: '#16a34a' },
-      { name: 'Ruby', bg: '#fff1f2', color: '#e11d48' },
-      { name: 'SQL', bg: '#fff7ed', color: '#ea580c' },
-      { name: 'Java', bg: '#fef9c3', color: '#ca8a04' },
+      { name: 'JavaScript', dot: '#f59e0b' },
+      { name: 'Python', dot: '#3b82f6' },
+      { name: 'Ruby', dot: '#ef4444' },
+      { name: 'Java', dot: '#f97316' },
+      { name: 'C++', dot: '#6366f1' },
     ],
   },
   {
+    icon: '⚙️',
     title: 'Frameworks',
-    color: 'var(--rose)',
     skills: [
-      { name: 'Node.js', bg: '#f0fdf4', color: '#16a34a' },
-      { name: 'Express.js', bg: '#f1f5f9', color: '#475569' },
-      { name: 'Ruby on Rails', bg: '#fff1f2', color: '#e11d48' },
-      { name: 'FastAPI', bg: '#ecfdf5', color: '#059669' },
-      { name: 'GraphQL', bg: '#fdf4ff', color: '#9333ea' },
+      { name: 'Express.js', dot: '#6b7280' },
+      { name: 'Ruby on Rails', dot: '#ef4444' },
+      { name: 'FastAPI', dot: '#14b8a6' },
     ],
   },
   {
+    icon: '💾',
     title: 'Databases',
-    color: 'var(--sky)',
     skills: [
-      { name: 'MongoDB', bg: '#f0fdf4', color: '#16a34a' },
-      { name: 'PostgreSQL', bg: '#eff6ff', color: '#2563eb' },
-      { name: 'MySQL', bg: '#fff7ed', color: '#ea580c' },
-      { name: 'Redis', bg: '#fff1f2', color: '#e11d48' },
-      { name: 'Prisma', bg: '#f1f5f9', color: '#475569' },
+      { name: 'MongoDB', dot: '#22c55e' },
+      { name: 'PostgreSQL', dot: '#3b82f6' },
+      { name: 'MySQL', dot: '#2563eb' },
     ],
   },
   {
+    icon: '🛠️',
     title: 'Tools & APIs',
-    color: 'var(--amber)',
     skills: [
-      { name: 'Docker', bg: '#eff6ff', color: '#2563eb' },
-      { name: 'AWS', bg: '#fff7ed', color: '#ea580c' },
-      { name: 'Git', bg: '#fff1f2', color: '#e11d48' },
-      { name: 'GitHub', bg: '#f1f5f9', color: '#475569' },
-      { name: 'Postman', bg: '#fff7ed', color: '#ea580c' },
-      { name: 'Sidekiq', bg: '#fdf4ff', color: '#9333ea' },
-      { name: 'Cypress', bg: '#ecfdf5', color: '#059669' },
-      { name: 'JWT', bg: '#fef9c3', color: '#ca8a04' },
+      { name: 'GraphQL', dot: '#ec4899' },
+      { name: 'Git', dot: '#f97316' },
+      { name: 'GitHub', dot: '#374151' },
+      { name: 'Postman', dot: '#f97316' },
+      { name: 'Prisma', dot: '#6366f1' },
+      { name: 'Sidekiq', dot: '#ef4444' },
     ],
   },
 ]
 
+const allSkills = [
+  { name: 'JavaScript', dot: '#f59e0b' }, { name: 'Ruby', dot: '#ef4444' },
+  { name: 'Python', dot: '#3b82f6' }, { name: 'GraphQL', dot: '#ec4899' },
+  { name: 'MongoDB', dot: '#22c55e' }, { name: 'PostgreSQL', dot: '#3b82f6' },
+  { name: 'MySQL', dot: '#2563eb' }, { name: 'FastAPI', dot: '#14b8a6' },
+  { name: 'Rails', dot: '#ef4444' }, { name: 'Node.js', dot: '#16a34a' },
+  { name: 'Git', dot: '#f97316' }, { name: 'Sidekiq', dot: '#ef4444' },
+  { name: 'Cypress', dot: '#22c55e' }, { name: 'Prisma', dot: '#6366f1' },
+  { name: 'Postman', dot: '#f97316' }, { name: 'JWT', dot: '#f59e0b' },
+]
+
 export default function Skills() {
   return (
-    <section id="skills" style={{ background: 'var(--bg2)', padding: '5rem 2rem' }}>
+    <section id="skills" style={{ padding: '5rem 2.5rem' }}>
       <div style={{ maxWidth: 1080, margin: '0 auto' }}>
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
-          <div className="section-label">Expertise</div>
-          <h2 className="section-title">Skills & Technologies</h2>
-          <p className="section-desc">Tools and technologies I use to build backend systems.</p>
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }} viewport={{ once: true }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', marginBottom: '0.6rem' }}>
+            <div style={{ width: 28, height: 2, background: 'linear-gradient(90deg, var(--indigo), var(--rose))' }} />
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.75rem', fontWeight: 600, letterSpacing: '0.1em', color: 'var(--indigo)', textTransform: 'uppercase' as const }}>Tech Stack</span>
+          </div>
+          <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', fontWeight: 800, color: 'var(--text)', letterSpacing: '-0.03em', marginBottom: '2.5rem' }}>Skills & Technologies</h2>
         </motion.div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))', gap: '1.5rem' }}>
-          {categories.map((cat, i) => (
-            <motion.div
-              key={cat.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              viewport={{ once: true }}
-              className="card"
-              style={{ background: 'white' }}
-            >
-              <div style={{
-                fontSize: '1rem', fontWeight: 700, marginBottom: '1rem',
-                background: `linear-gradient(135deg, ${cat.color}, var(--indigo-d))`,
-                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-              }}>{cat.title}</div>
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+        {/* Category grid: 3 top columns */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.2rem', marginBottom: '1.2rem' }}>
+          {categories.slice(0, 3).map((cat, i) => (
+            <motion.div key={cat.title} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: i * 0.08 }} viewport={{ once: true }} className="card" style={{ background: 'white' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', marginBottom: '1.2rem' }}>
+                <div style={{ width: 32, height: 32, borderRadius: 8, background: 'var(--bg2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>{cat.icon}</div>
+                <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.08em', color: 'var(--text)', textTransform: 'uppercase' as const }}>{cat.title}</span>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                 {cat.skills.map((s) => (
-                  <span
-                    key={s.name}
-                    style={{
-                      fontSize: '0.8rem', fontWeight: 500, fontFamily: 'JetBrains Mono, monospace',
-                      background: s.bg, color: s.color,
-                      padding: '0.28rem 0.75rem', borderRadius: 8,
-                      transition: 'transform 0.15s',
-                      cursor: 'default',
-                      display: 'inline-block',
-                    }}
-                    onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-2px)')}
-                    onMouseLeave={(e) => (e.currentTarget.style.transform = 'translateY(0)')}
-                  >{s.name}</span>
+                  <div key={s.name} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'white', border: '1px solid var(--border)', borderRadius: 8, padding: '0.4rem 0.8rem', fontSize: '0.88rem', color: 'var(--text2)', width: 'fit-content' }}>
+                    <span style={{ width: 8, height: 8, borderRadius: '50%', background: s.dot, flexShrink: 0 }} />
+                    {s.name}
+                  </div>
                 ))}
               </div>
             </motion.div>
           ))}
         </div>
+
+        {/* Tools row */}
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.25 }} viewport={{ once: true }} className="card" style={{ background: 'white', marginBottom: '1.2rem', maxWidth: 420 }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.7rem', marginBottom: '1.2rem' }}>
+            <div style={{ width: 32, height: 32, borderRadius: 8, background: 'var(--bg2)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.1rem' }}>🛠️</div>
+            <span style={{ fontFamily: 'JetBrains Mono, monospace', fontSize: '0.78rem', fontWeight: 700, letterSpacing: '0.08em', color: 'var(--text)', textTransform: 'uppercase' as const }}>Tools & APIs</span>
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
+            {categories[3].skills.map((s) => (
+              <div key={s.name} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem', background: 'white', border: '1px solid var(--border)', borderRadius: 8, padding: '0.4rem 0.8rem', fontSize: '0.88rem', color: 'var(--text2)' }}>
+                <span style={{ width: 8, height: 8, borderRadius: '50%', background: s.dot, flexShrink: 0 }} />
+                {s.name}
+              </div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* All-skills cloud card */}
+        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }} viewport={{ once: true }} className="card" style={{ background: 'white' }}>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.6rem' }}>
+            {allSkills.map((s) => (
+              <span key={s.name} style={{ display: 'inline-flex', alignItems: 'center', gap: '0.45rem', background: 'white', border: '1px solid var(--border)', borderRadius: 100, padding: '0.3rem 0.9rem', fontSize: '0.85rem', color: 'var(--text2)' }}>
+                <span style={{ width: 7, height: 7, borderRadius: '50%', background: s.dot, flexShrink: 0 }} />
+                {s.name}
+              </span>
+            ))}
+          </div>
+        </motion.div>
       </div>
     </section>
   )
