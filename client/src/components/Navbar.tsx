@@ -46,33 +46,35 @@ export default function Navbar() {
 
         {/* Nav links */}
         <div style={{ display: 'flex', gap: '0.15rem' }}>
-          {links.map((l) => (
-            <a
-              key={l}
-              href={`#${l.toLowerCase()}`}
-              style={{
-                fontSize: '0.9rem', fontWeight: 500,
-                color: active === l.toLowerCase() ? 'var(--indigo)' : 'var(--text2)',
-                textDecoration: 'none',
-                padding: '0.45rem 1rem',
-                borderRadius: 8,
-                background: active === l.toLowerCase() ? '#eef2ff' : 'transparent',
-                transition: 'all 0.18s',
-              }}
-              onMouseEnter={(e) => {
-                if (active !== l.toLowerCase()) {
-                  (e.currentTarget as HTMLElement).style.color = 'var(--indigo)'
-                  ;(e.currentTarget as HTMLElement).style.background = '#f5f3ff'
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (active !== l.toLowerCase()) {
-                  (e.currentTarget as HTMLElement).style.color = 'var(--text2)'
-                  ;(e.currentTarget as HTMLElement).style.background = 'transparent'
-                }
-              }}
-            >{l}</a>
-          ))}
+          {links.map((l) => {
+            const isActive = active === l.toLowerCase()
+            return (
+              <a
+                key={l}
+                href={`#${l.toLowerCase()}`}
+                style={{
+                  fontSize: '0.9rem', fontWeight: isActive ? 600 : 500,
+                  color: isActive ? 'var(--indigo)' : 'var(--text2)',
+                  textDecoration: 'none',
+                  padding: '0.45rem 1rem',
+                  borderRadius: 0,
+                  background: 'transparent',
+                  borderBottom: isActive ? '2px solid var(--indigo)' : '2px solid transparent',
+                  transition: 'all 0.18s',
+                }}
+                onMouseEnter={(e) => {
+                  const el = e.currentTarget as HTMLElement
+                  el.style.color = 'var(--indigo)'
+                  if (!isActive) el.style.borderBottom = '2px solid #c7d2fe'
+                }}
+                onMouseLeave={(e) => {
+                  const el = e.currentTarget as HTMLElement
+                  el.style.color = isActive ? 'var(--indigo)' : 'var(--text2)'
+                  el.style.borderBottom = isActive ? '2px solid var(--indigo)' : '2px solid transparent'
+                }}
+              >{l}</a>
+            )
+          })}
         </div>
       </div>
     </nav>
